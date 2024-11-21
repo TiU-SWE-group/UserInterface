@@ -1,0 +1,1 @@
+This repository contains all files needed to create the user interface for our project: index.html, style.css, and picture bg3. NOTE: IN ORDER FOR ALL THREE FILES TO WORK TOGETHER, ADD THE PICTURE bg3 INTO A FOLDER NAMED "images".

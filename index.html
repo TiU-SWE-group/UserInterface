@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marley & Me - Pet Adoption - Add Your Pet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <div id="company-info">
+            <h1>Marley & Me</h1>
+            <p>The Marley & Me application offers its users the latest project: Profiles & Paws.</p>
+		 <p>Your trusted platform for generating descriptions for adoptable animals, based on their basic information. Every pet deserves to find their perfect forever home.</p>
+        </div>
+
+        <div id="form-container">
+            <h2>Add Pet's Information</h2>
+            <label for="pet-color">Pet Color:</label>
+            <input type="text" id="pet-color" placeholder="Enter the pet's color">
+
+		 <label for="pet-age">Pet Age:</label>
+            <input type="text" id="pet-age"  placeholder="Enter the pet's age">
+
+            <label for="pet-gender">Pet Gender:</label>
+            <input type="text" id="pet-gender" placeholder="Enter the pet's gender">
+
+            <label for="pet-size">Pet Size:</label>
+            <input type="text" id="pet-size" placeholder="Enter the pet's size">
+
+            <label for="pet-species">Pet Species:</label>
+            <input type="text" id="pet-species" placeholder="Enter the pet's species">
+
+            <label for="pet-email">Email:</label>
+            <input type="text" id="pet-email" placeholder="Enter the email address at which someone can contact you for starting the adoption process">
+
+            <label for="pet-url">URL:</label>
+            <input type="text" id="pet-url"  placeholder="Enter the URL where the pet can be found">
+
+            <label for="pet-phone">Phone Number:</label>
+            <input type="text" id="pet-phone" placeholder="Enter phone number">
+
+
+            <button class="btn" onclick="generatePetInfo()">Generate Description</button>
+        </div>
+
+        <div id="result" style="display: none;">
+            <h2>Generated Text</h2>
+            <p id="generated-text"></p>
+        </div>
+    </div>
+
+    <div id="footer">
+        <p>&copy; 2024 Marley & Me. All rights reserved.</p>
+    </div>
+
+    <script>
+        function generatePetInfo() {
+            const color = document.getElementById('pet-color').value;
+            const age = document.getElementById('pet-age').value;
+            const gender = document.getElementById('pet-gender').value;
+            const size = document.getElementById('pet-size').value;
+            const species = document.getElementById('pet-species').value;
+            const email = document.getElementById('pet-email').value;
+            const url = document.getElementById('pet-url').value;
+            const phone = document.getElementById('pet-phone').value;
+
+            if (color && age && gender && size && species && email && url && phone) {
+                const generatedText = `Meet x, a lovely ${species}! Here's what makes them special: ${color}, ${age}, ${gender}, ${size}. For more info, check: ${email}, ${url}, and ${phone}.`;
+                document.getElementById('generated-text').textContent = generatedText;
+                document.getElementById('result').style.display = 'block';
+            } else {
+                alert('Please fill in all the fields.');
+            }
+        }
+    </script>
+</body>
+</html>

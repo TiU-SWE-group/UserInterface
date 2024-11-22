@@ -17,6 +17,9 @@
 
         <div id="form-container">
             <h2>Add Pet's Information</h2>
+            <label for="pet-name">Pet Name:</label>
+            <input type="text" id="pet-name" placeholder="Enter the pet's name">
+
             <label for="pet-color">Pet Color:</label>
             <input type="text" id="pet-color" placeholder="Enter the pet's color">
 
@@ -55,25 +58,57 @@
         <p>&copy; 2024 Marley & Me. All rights reserved.</p>
     </div>
 
-    <script>
-        function generatePetInfo() {
-            const color = document.getElementById('pet-color').value;
-            const age = document.getElementById('pet-age').value;
-            const gender = document.getElementById('pet-gender').value;
-            const size = document.getElementById('pet-size').value;
-            const species = document.getElementById('pet-species').value;
-            const email = document.getElementById('pet-email').value;
-            const url = document.getElementById('pet-url').value;
-            const phone = document.getElementById('pet-phone').value;
+<script>
+    async function generatePetInfo() {
+        const name = document.getElementById('pet-name').value;
+        const color = document.getElementById('pet-color').value;
+        const age = document.getElementById('pet-age').value;
+        const gender = document.getElementById('pet-gender').value;
+        const size = document.getElementById('pet-size').value;
+        const species = document.getElementById('pet-species').value;
+        const email = document.getElementById('pet-email').value;
+        const url = document.getElementById('pet-url').value;
+        const phone = document.getElementById('pet-phone').value;
 
-            if (color && age && gender && size && species && email && url && phone) {
-                const generatedText = `Meet x, a lovely ${species}! Here's what makes them special: ${color}, ${age}, ${gender}, ${size}. For more info, check: ${email}, ${url}, and ${phone}.`;
+        if (name && color && age && gender && size && species && email && url && phone) {
+            const requestData = {
+                name: name,
+                color: color,
+                age: age,
+                gender: gender,
+                size: size,
+                species: species,
+                email: email,
+                url: url,
+                phonenr: phone
+            };
+
+            try {
+                const response = await fetch('http://127.0.0.1:5001/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestData)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Server error: ${response.status}`);
+                }
+
+                const responseData = await response.json();
+                const generatedText = responseData.description;
+
                 document.getElementById('generated-text').textContent = generatedText;
                 document.getElementById('result').style.display = 'block';
-            } else {
-                alert('Please fill in all the fields.');
+            } catch (error) {
+                console.error('Error generating description:', error);
+                alert('Failed to generate pet description. Please try again later.');
             }
+        } else {
+            alert('Please fill in all the fields.');
         }
-    </script>
+    }
+</script>
 </body>
 </html>

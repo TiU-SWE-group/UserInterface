@@ -101,7 +101,10 @@
 
                 const textarea = document.getElementById('generated-text');
                 textarea.value = generatedText;
-                textArea.readOnly = false; // This is for allowing editing after generation                 			          document.getElementById('result').style.display = 'block';
+
+textArea.readOnly = false; // This is for allowing editing after generation                 	
+
+document.getElementById('result').style.display = 'block';
             } catch (error) {
                 console.error('Error generating description:', error);
                 alert('Failed to generate pet description. Please try again later.');

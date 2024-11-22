@@ -94,6 +94,19 @@ textarea {
    margin-top: 0;
 }
 
+#result textarea {
+   width: calc(100% - 20px); /* Adjust for padding inside the container */
+   min-height: 150px; /* Provide enough space for the description */
+   padding: 10px;
+   border: 1px solid #ddd;
+   border-radius: 5px;
+   font-size: 1em;
+   font-family: 'Roboto', sans-serif;
+   resize: vertical; /* Allow resizing vertically */
+   background-color: #f9f9f9;
+   box-sizing: border-box;
+}
+
 #footer {
    text-align: center;
    margin-top: 20px;

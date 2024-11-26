@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marley & Me - Pet Adoption - Add Your Pet</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="container">
@@ -50,7 +50,7 @@
 
         <div id="result" style="display: none;">
             <h2>Generated Text</h2>
-            <p id="generated-text"></p>
+            <textarea id="generated-text" rows="8" placeholder="Generated description will appear here. You can edit it manually if you would like to refine it."></textarea>
         </div>
     </div>
 
@@ -99,8 +99,12 @@
                 const responseData = await response.json();
                 const generatedText = responseData.description;
 
-                document.getElementById('generated-text').textContent = generatedText;
-                document.getElementById('result').style.display = 'block';
+                const textarea = document.getElementById('generated-text');
+                textarea.value = generatedText;
+
+textarea.readOnly = false; // This is for allowing editing after generation                 	
+
+document.getElementById('result').style.display = 'block';
             } catch (error) {
                 console.error('Error generating description:', error);
                 alert('Failed to generate pet description. Please try again later.');
